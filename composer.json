@@ -1,0 +1,21 @@
+{
+    "name": "wmt-pc-8/php-demo",
+    "type": "project",
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/Helpers/start.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Umesh Prajapati",
+            "email": "umeshp@webmobtech.com"
+        }
+    ]
+}
