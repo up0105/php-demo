@@ -23,13 +23,33 @@ class User extends Model
     {
         $sql = "SELECT * FROM users WHERE id = $id";
         $result = $this->db->query($sql);
+        return $result->fetch_assoc();
+    }
 
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                echo "id: " . $row["id"] . " - Name: " . $row["name"] . " " . $row["email"] . "<br>";
-            }
-        } else {
-            echo "0 results";
+    function login(string $email, string $password): bool
+    {
+        $user = $this->findUserByEmail($email);
+
+        // if user found, check the password
+        if ($user && password_verify($password, $user['password'])) {
+
+            // prevent session fixation attack
+            session_regenerate_id();
+
+            // set username in the session
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['user_id']  = $user['id'];
+
+            return true;
         }
+
+        return false;
+    }
+
+    public function findUserByEmail($email)
+    {
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $result = $this->db->query($sql);
+        return $result->fetch_assoc();
     }
 }

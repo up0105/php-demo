@@ -1,66 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$title = 'Users List';
+ob_start();
+?>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demo</title>
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
-
-    <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-</head>
-
-<body>
-    <div class="container">
-        <table id="todo-table" class="table table-striped table-bordered table-hover table-condensed">
-            <thead>
+<div class="table-responsive">
+    <table id="users-table" class="table table-condensed cell-border" style="width: 100%" cellspacing="0">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user) : ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Title</th>
-                    <th>Action</th>
+                    <td><?= $user['id'] ?></td>
+                    <td><?= htmlspecialchars($user['first_name'] . ' ' . $user['last_name']) ?></td>
+                    <td>
+                        <?= $user['email'] ?>
+                    </td>
+                    <td>
+                        <div class="d-flex gap-2">
+                            <a href="/user/<?= $user['id'] ?>/show" class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a href="/user/<?= $user['id'] ?>/edit" class="btn btn-sm btn-warning">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="/user/<?= $user['id'] ?>/delete" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <!-- PHP loop to output todos -->
-                <?php foreach ($users as $user) : ?>
-                    <tr>
-                        <td><?= $user['id']; ?></td>
-                        <td><?= htmlspecialchars($user['name']); ?></td>
-                        <td>
-                            <a href="/user/<?= $user['id']; ?>" class="btn btn-primary">View</a>
-                            <a href="/user/<?= $user['id']; ?>/edit" class="btn btn-warning">Edit</a>
-                            <a href="/user/<?= $user['id']; ?>/delete" class="btn btn-danger">Delete</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-</body>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 
 <script>
     $(document).ready(function() {
-        $('#todo-table').DataTable({
+        $('#users-table').DataTable({
             "paging": true,
             "lengthChange": true,
             "searching": true,
             "ordering": true,
             "info": true,
-            "autoWidth": true,
+            "autoWidth": false,
             "responsive": true,
+            "columnDefs": [{
+                "orderable": false,
+                "targets": 2
+            }]
         });
     });
 </script>
 
-</html>
+<?php
+$content = ob_get_clean();
+// Include layout
+include_once __DIR__ . '/../layouts/app_layout.php';
+?>
