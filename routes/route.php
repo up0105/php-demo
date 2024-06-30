@@ -47,8 +47,12 @@ function handleRequest($routes)
     $uri = $_SERVER['REQUEST_URI'];
     $method = $_SERVER['REQUEST_METHOD'];
     if ($uri == '/') {
-        $uri = '/dashboard';
-    }
+        if (is_user_logged_in()) {
+            $uri = '/dashboard';
+        } else {
+            redirect_to('login');
+        }
+    } 
     
     foreach ($routes as $route => $routeData) {
         $route = str_replace('/', '\/', $route);

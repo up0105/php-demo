@@ -23,6 +23,9 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css'>
 
+    <!-- Jqeury toast  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         <?php include_once __DIR__ . '/../../public/assets/css/style.css'; ?>
     </style>
@@ -69,6 +72,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+            <?php 
+                if (isset($_SESSION['success'])) {
+                    echo "toastr.success('$_SESSION[success]');";
+                    unset($_SESSION['success']);
+                }
+            ?>
+    </script>
 </body>
 
 </html>

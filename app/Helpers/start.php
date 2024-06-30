@@ -43,7 +43,7 @@ if (!function_exists('require_login')) {
     function require_login(): void
     {
         if (!is_user_logged_in()) {
-            redirect_to('login.php');
+            redirect_to('login');
         }
     }
 }

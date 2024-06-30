@@ -1,22 +1,9 @@
 <?php
 $title = 'Users List';
-
-if (isset($_SESSION['success'])) {
-    $success = $_SESSION['success'];
-    unset($_SESSION['success']);
-} else {
-    $success = null;
-}
 ob_start();
 ?>
 
 <div class="row">
-    <?php
-        if ($success) {
-            echo '<div class="alert alert-success" role="alert">' . $success . '</div>';
-        }
-    ?>
-
     <div class="col-xl-3 mb-50">
         <div class="bg-white box-shadow border-radius-10 height-100-p widget-style1">
             <div class="d-flex flex-wrap align-items-center">
