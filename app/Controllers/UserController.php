@@ -18,4 +18,11 @@ class UserController
         $user = new User();
         $user->user($id);
     }
+
+    public function show($id)
+    {
+        $user = new User();
+        $user = $user->user($id);
+        return view('users/show', compact('user'));
+    }
 }

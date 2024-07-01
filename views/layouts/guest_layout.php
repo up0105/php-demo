@@ -23,47 +23,15 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.css'>
 
-    <!-- Jqeury toast  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <style>
         <?php include_once __DIR__ . '/../../public/assets/css/style.css'; ?>
     </style>
-
-    <style>
-        .page {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        footer {
-            background-color: #f8f9fa;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: auto;
-        }
-    </style>
 </head>
 
-<body>
-    <div class="page">
-        <div class="container-fluid">
-            <div class="row flex-nowrap">
-                <?php include 'sidebar.php'; ?>
-                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 d-flex flex-column">
-                    <?php include 'topbar.php'; ?>
-                    <?php include 'header.php'; ?>
-                    <div class="flex-grow-1">
-                        <?php echo $content; ?>
-                    </div>
-                </main>
-            </div>
-        </div>
-        <footer class="footer mt-auto py-3 bg-dark text-white">
-            <p>&copy; 2024 Your Company. All rights reserved.</p>
-        </footer>
-    </div>
+<body class="main-bg">
+    <main>
+        <?php echo $content; ?>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
@@ -72,15 +40,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.js"></script>
-
-    <script>
-            <?php 
-                if (isset($_SESSION['success'])) {
-                    echo "toastr.success('$_SESSION[success]');";
-                    unset($_SESSION['success']);
-                }
-            ?>
-    </script>
 </body>
 
 </html>
